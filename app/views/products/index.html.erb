@@ -1,0 +1,33 @@
+<div class="mt-25 pl-15">
+  <h3>Listing Products</h3>
+</div>
+<br>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>SKU Code</th>
+      <th>Name</th>
+      <% @ware_houses.each do |ware_house, index| %>
+        <th><%= ware_house.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each_with_index do |product, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><a href="<%= edit_product_path(product) %>"><%= product.sku_code %></a></td>
+        <td><%= product.name %></td>
+        <% product.ware_house_products.each do |ware_house_product| %>
+          <td class="<%= (ware_house_product.low_item_threshold > ware_house_product.item_count) ? 'bg-danger' : '' %>"><%= ware_house_product.item_count %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class='digg_pagination'>
+  <%= will_paginate @products %>
+</div>

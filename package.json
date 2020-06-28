@@ -1,0 +1,7 @@
+{
+  "name": "simple_inventory_management",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}

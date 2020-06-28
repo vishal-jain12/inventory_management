@@ -1,0 +1,46 @@
+<%= form_with(model: ware_house, local: true) do |f| %>
+  <% if ware_house.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ware_house.errors.count, "error") %> prohibited this ware_house from being saved:</h2>
+
+      <ul>
+      <% ware_house.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :wh_code, "Ware House Code:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :wh_code, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "Ware House Name:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pincode, "Ware House Pincode:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :pincode, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :max_capacity, "Ware House Capacity:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.number_field :max_capacity, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="pl-15">
+    <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+    <%= link_to 'Back', root_path, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>

@@ -1,0 +1,59 @@
+<%= form_with(model: product, local: true) do |f| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :sku_code, "SKU Code:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :sku_code, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "Product Name:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, "Product Price:", class: "col-md-4 control-label" %>
+    <div class="col-md-8">
+      <%= f.number_field :price, class: "form-control", required: true, min: 1, step: 1 %>
+    </div>
+  </div>
+
+  <%= f.fields_for :ware_house_products do |ff| %>
+    <div class="pl-15">
+      <h3>Ware House: <%= ff.object.ware_house.try(:name) rescue '1' %></h3>
+    </div>
+    <div class="form-group">
+      <%= ff.label :item_count, "Item Count:", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= ff.number_field :item_count, class: "form-control", required: true, min: 1, step: 1 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= ff.label :low_item_threshold, "Item Threshold Count:", class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= ff.number_field :low_item_threshold, class: "form-control", required: true, min: 1, step: 1 %>
+      </div>
+    </div>
+    <%= ff.hidden_field :ware_house_id %>
+  <% end %>
+
+  <div class="pl-15">
+    <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+    <%= link_to 'Back', root_path, class: 'btn btn-outline-secondary' %>
+  </div>
+<% end %>
