@@ -1,24 +1,17 @@
-# README
+# Inventory Management Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Sqllite for database
 
-Things you may want to cover:
+2. Ruby Version - 2.3.1
 
-* Ruby version
+3. Rails Version - 5.2.2
 
-* System dependencies
+4. Run rake db:seed to create products and warehouses
 
-* Configuration
+5. Added Bootstrap.
 
-* Database creation
+6. Added necessary validation for pincode, name, and uniqueness for various fields.
 
-* Database initialization
+7. On homepage, the list of products with their warehouse details is shown and added a shortcut button to add a new ware house.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+8. Added pagination for products listing with 10 products on each page.
